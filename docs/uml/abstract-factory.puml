@@ -1,0 +1,47 @@
+@startuml abstract-factory
+title Abstract Factory - GUI components
+
+interface Button <<Abstract Product A>> {
+  +paint()
+}
+interface Checkbox <<Abstract Product B>> {
+  +paint()
+}
+class WindowsButton <<Concrete Product>>
+class MacOSButton <<Concrete Product>>
+class WindowsCheckbox <<Concrete Product>>
+class MacOSCheckbox <<Concrete Product>>
+
+interface GUIFactory <<Abstract Factory>> {
+  +createButton(): Button
+  +createCheckbox(): Checkbox
+}
+class WindowsFactory <<Concrete Factory>> {
+  +createButton(): Button
+  +createCheckbox(): Checkbox
+}
+class MacOSFactory <<Concrete Factory>> {
+  +createButton(): Button
+  +createCheckbox(): Checkbox
+}
+class DeliveryApplication <<Client>> {
+  -guiFactory: GUIFactory
+  -logistics: Logistics
+  +DeliveryApplication(GUIFactory, Logistics)
+  +run()
+}
+
+Button <|.. WindowsButton
+Button <|.. MacOSButton
+Checkbox <|.. WindowsCheckbox
+Checkbox <|.. MacOSCheckbox
+GUIFactory <|.. WindowsFactory
+GUIFactory <|.. MacOSFactory
+WindowsFactory ..> WindowsButton : <<create>>
+WindowsFactory ..> WindowsCheckbox : <<create>>
+MacOSFactory ..> MacOSButton : <<create>>
+MacOSFactory ..> MacOSCheckbox : <<create>>
+DeliveryApplication --> GUIFactory
+DeliveryApplication ..> Button
+DeliveryApplication ..> Checkbox
+@enduml

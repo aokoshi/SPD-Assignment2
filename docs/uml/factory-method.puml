@@ -1,0 +1,33 @@
+@startuml factory-method
+title Factory Method - Logistics
+
+interface Transport <<Product>> {
+  +deliver(cargo: String, destination: String)
+}
+class Truck <<Concrete Product>> {
+  +deliver(cargo: String, destination: String)
+}
+class Ship <<Concrete Product>> {
+  +deliver(cargo: String, destination: String)
+}
+abstract class Logistics <<Creator>> {
+  #{abstract} createTransport(): Transport
+  +planDelivery(cargo: String, destination: String)
+}
+class RoadLogistics <<Concrete Creator>> {
+  #createTransport(): Transport
+}
+class SeaLogistics <<Concrete Creator>> {
+  #createTransport(): Transport
+}
+class DeliveryApplication <<Client>>
+
+Transport <|.. Truck
+Transport <|.. Ship
+Logistics <|-- RoadLogistics
+Logistics <|-- SeaLogistics
+Logistics ..> Transport : uses (planDelivery)
+RoadLogistics ..> Truck : <<create>>
+SeaLogistics ..> Ship : <<create>>
+DeliveryApplication --> Logistics : calls planDelivery()
+@enduml
