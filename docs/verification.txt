@@ -1,0 +1,60 @@
+=== Check 1
+$ java -cp out app.Main ROAD WINDOWS
+Delivery mode: ROAD
+UI platform: WINDOWS
+Rendering Windows button
+Rendering Windows checkbox
+Truck delivers laboratory equipment to Aktau warehouse by road
+[exit code: 0]
+
+=== Check 2
+$ java -cp out app.Main SEA WINDOWS
+Delivery mode: SEA
+UI platform: WINDOWS
+Rendering Windows button
+Rendering Windows checkbox
+Ship delivers laboratory equipment to Aktau warehouse by sea
+[exit code: 0]
+
+=== Check 3
+$ java -cp out app.Main ROAD MACOS
+Delivery mode: ROAD
+UI platform: MACOS
+Rendering macOS button
+Rendering macOS checkbox
+Truck delivers laboratory equipment to Aktau warehouse by road
+[exit code: 0]
+
+=== Check 4
+$ java -cp out app.Main SEA MACOS
+Delivery mode: SEA
+UI platform: MACOS
+Rendering macOS button
+Rendering macOS checkbox
+Ship delivers laboratory equipment to Aktau warehouse by sea
+[exit code: 0]
+
+=== Check 5 (unsupported delivery mode)
+$ java -cp out app.Main AIR WINDOWS
+Error: Unsupported delivery mode 'AIR'. Supported: ROAD, SEA.
+Usage: java app.Main <ROAD|SEA> <WINDOWS|MACOS>
+[exit code: 1]
+
+=== Check 6 (unsupported platform)
+$ java -cp out app.Main ROAD LINUX
+Error: Unsupported UI platform 'LINUX'. Supported: WINDOWS, MACOS.
+Usage: java app.Main <ROAD|SEA> <WINDOWS|MACOS>
+[exit code: 1]
+
+=== Missing input (no arguments)
+$ java -cp out app.Main 
+Error: Expected 2 arguments: delivery mode and UI platform.
+Usage: java app.Main <ROAD|SEA> <WINDOWS|MACOS>
+[exit code: 1]
+
+=== Missing input (one argument)
+$ java -cp out app.Main ROAD
+Error: Expected 2 arguments: delivery mode and UI platform.
+Usage: java app.Main <ROAD|SEA> <WINDOWS|MACOS>
+[exit code: 1]
+
